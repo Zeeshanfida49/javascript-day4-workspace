@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Day 4 JavaScript workspace with a counter, theme toggle, registration validation, and task manager.">
+
+  <title>Day 4 Workspace | Zeeshan Fida</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">
+        <span class="brand-icon">Z.</span>
+        <span>Zeeshan<span class="accent">.</span></span>
+      </a>
+
+      <div class="header-actions">
+        <button class="theme-button" id="theme-toggle" type="button"
+          aria-label="Switch to dark mode" aria-pressed="false">
+          Dark mode
+        </button>
+
+        <button class="menu-toggle" id="menu-toggle" type="button"
+          aria-label="Open navigation" aria-expanded="false"
+          aria-controls="main-navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav id="main-navigation" aria-label="Main navigation">
+        <a href="#counter">Counter</a>
+        <a href="#registration">Registration</a>
+        <a href="#tasks">To-Do App</a>
+        <span class="badge">DAY 04</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">TECH SG STUDIO / DAY 04</p>
+        <h1>Small interactions.<br><span>Real progress.</span></h1>
+        <p class="hero-description">
+          Practice DOM events, form validation, and local storage
+          through three interactive tools.
+        </p>
+
+        <a class="button" href="#counter">Explore workspace ↗</a>
+      </div>
+
+      <aside class="hero-card">
+        <p class="eyebrow">TODAY'S PRACTICE</p>
+        <h2>Make the page respond.</h2>
+
+        <div class="summary-row">
+          <span>01</span>
+          <div>
+            <strong>Counter & Theme</strong>
+            <p>Events and saved preferences</p>
+          </div>
+        </div>
+
+        <div class="summary-row">
+          <span>02</span>
+          <div>
+            <strong>Registration Form</strong>
+            <p>Validation and feedback</p>
+          </div>
+        </div>
+
+        <div class="summary-row">
+          <span>03</span>
+          <div>
+            <strong>Task Manager</strong>
+            <p>Create, complete, edit, and filter</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Task 1: Counter and Theme Toggle -->
+    <section class="workspace" id="counter" aria-labelledby="counter-title">
+      <div class="section-heading">
+        <span class="task-number">01</span>
+        <div>
+          <p class="eyebrow">COUNTER & THEME TOGGLE</p>
+          <h2 id="counter-title">Every click counts.</h2>
+          <p>Increase, decrease, or reset the counter.</p>
+        </div>
+      </div>
+
+      <div class="counter-layout">
+        <div class="counter-panel">
+          <p class="eyebrow">CURRENT COUNT</p>
+          <output class="counter-value" id="counter-value"
+            aria-live="polite" aria-atomic="true">0</output>
+
+          <div class="counter-controls">
+            <button class="count-button" id="decrease" type="button"
+              aria-label="Decrease counter" disabled>−</button>
+
+            <button class="button secondary" id="reset-counter"
+              type="button">Reset</button>
+
+            <button class="count-button" id="increase" type="button"
+              aria-label="Increase counter">+</button>
+          </div>
+
+          <p class="helper">The counter cannot go below zero.</p>
+        </div>
+
+        <aside class="info-panel">
+          <span class="badge">SAVED PREFERENCE</span>
+          <h3>Your workspace, your theme.</h3>
+          <p>
+            Use the theme button in the navigation bar to switch
+            between light and dark mode.
+          </p>
+          <p>
+            Your selected theme is saved in localStorage and restored
+            when you refresh the page.
+          </p>
+          <p class="theme-status" id="theme-status"></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Task 2: Registration Form Validation -->
+    <section class="workspace" id="registration"
+      aria-labelledby="registration-title">
+      <div class="section-heading">
+        <span class="task-number">02</span>
+        <div>
+          <p class="eyebrow">REGISTRATION FORM VALIDATION</p>
+          <h2 id="registration-title">Good forms give clear feedback.</h2>
+          <p>Enter your details and check every field before submitting.</p>
+        </div>
+      </div>
+
+      <div class="registration-layout">
+        <form id="registration-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="full-name">Full name</label>
+              <input id="full-name" name="fullName" type="text"
+                autocomplete="name" maxlength="80"
+                placeholder="Enter your name" required
+                aria-describedby="name-error">
+              <p class="field-error" id="name-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email"
+                autocomplete="email" maxlength="254"
+                placeholder="you@example.com" required
+                aria-describedby="email-error">
+              <p class="field-error" id="email-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password"
+                autocomplete="new-password" minlength="8"
+                placeholder="At least 8 characters" required
+                aria-describedby="password-error">
+              <p class="field-error" id="password-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="confirm-password">Confirm password</label>
+              <input id="confirm-password" name="confirmPassword"
+                type="password" autocomplete="new-password"
+                placeholder="Repeat your password" required
+                aria-describedby="confirm-error">
+              <p class="field-error" id="confirm-error"></p>
+            </div>
+          </div>
+
+          <label class="checkbox-label">
+            <input id="show-passwords" type="checkbox">
+            <span>Show passwords</span>
+          </label>
+
+          <button class="button" type="submit">Validate registration ↗</button>
+
+          <p class="form-message" id="registration-message"
+            role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="info-panel">
+          <span class="badge">VALIDATION CHECKLIST</span>
+          <h3>Before you continue.</h3>
+
+          <ul class="checklist">
+            <li>Name must not be empty.</li>
+            <li>Email must have a valid format.</li>
+            <li>Password must contain at least 8 characters.</li>
+            <li>Both passwords must match.</li>
+          </ul>
+
+          <p class="helper">
+            This is a frontend validation demo. No account is created,
+            and passwords are not saved or sent anywhere.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Task 3: To-Do App Upgrade -->
+    <section class="workspace" id="tasks" aria-labelledby="tasks-title">
+      <div class="section-heading">
+        <span class="task-number">03</span>
+        <div>
+          <p class="eyebrow">TO-DO APP UPGRADE</p>
+          <h2 id="tasks-title">A little more organized.</h2>
+          <p>Add tasks, track progress, and plan your next step.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat">
+          <span>Total tasks</span>
+          <strong id="total-tasks">0</strong>
+        </article>
+
+        <article class="stat">
+          <span>Pending</span>
+          <strong id="pending-tasks">0</strong>
+        </article>
+
+        <article class="stat">
+          <span>Completed</span>
+          <strong id="completed-tasks">0</strong>
+        </article>
+      </div>
+
+      <form class="task-form" id="task-form">
+        <div class="field">
+          <label for="task-input">Task description</label>
+          <input id="task-input" type="text" maxlength="150"
+            placeholder="What would you like to finish?" required>
+        </div>
+
+        <div class="field">
+          <label for="task-date">Due date <span>(optional)</span></label>
+          <input id="task-date" type="date" max="9999-12-31">
+        </div>
+
+        <button class="button" type="submit">Add task +</button>
+      </form>
+
+      <p class="helper">Press Enter in the task field to add your task.</p>
+
+      <div class="task-toolbar">
+        <div class="filter-buttons" role="group" aria-label="Filter tasks">
+          <button class="filter-button active" type="button"
+            data-filter="all" aria-pressed="true">All</button>
+
+          <button class="filter-button" type="button"
+            data-filter="pending" aria-pressed="false">Pending</button>
+
+          <button class="filter-button" type="button"
+            data-filter="done" aria-pressed="false">Done</button>
+        </div>
+
+        <p id="pending-summary" aria-live="polite">0 tasks pending</p>
+      </div>
+
+      <ul class="task-list" id="task-list"></ul>
+
+      <div class="empty-state" id="empty-state">
+        <span aria-hidden="true">✓</span>
+        <h3>No tasks yet.</h3>
+        <p>Add your first task to get started.</p>
+      </div>
+
+      <p class="form-message" id="task-message"
+        role="status" aria-live="polite"></p>
+
+      <p class="helper">
+        Tasks and due dates are saved in this browser.
+        Use Edit to update a task or Delete to remove it.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="#home">
+          Zeeshan Fida<span class="accent">.</span>
+        </a>
+        <p>Learning by building, one task at a time.</p>
+      </div>
+
+      <div>
+        <p>Tech SG Studio · Day 04</p>
+        <a href="#home">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
